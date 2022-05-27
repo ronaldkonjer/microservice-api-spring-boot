@@ -1,113 +1,210 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>microservice-api-spring-boot</artifactId>
-	<packaging>jar</packaging>
-
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.7</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>eu.comparegroup.backbone</groupId>
+		<artifactId>backbone-parent-spring-boot</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
+	<groupId>eu.comparegroup.services.web</groupId>
+	<artifactId>brilliant-api-spring-boot</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>brilliant-api-spring-boot</name>
+	<description>Demo project for Spring Boot</description>
+
+	<scm>
+		<connection>scm:git:ssh://stash.z.cgnet.nl:7999/par/cg-spring-boot-vuejs.git</connection>
+		<developerConnection>scm:git:ssh://stash.z.cgnet.nl:7999/par/cg-spring-boot-vuejs.git
+		</developerConnection>
+		<url>scm:git:ssh://stash.z.cgnet.nl:7999/par/cg-spring-boot-vuejs.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<modules>
+		<module>brilliant-api</module>
+<!--		<module>brilliant-frontend</module>-->
+	</modules>
+
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<start.class>eu.comparegroup.services.web.cg.CgBackendApplication</start.class>
+		<spring-boot.version>2.5.0</spring-boot.version>
 		<java.version>11</java.version>
 
+		<server.http.port>10270</server.http.port>
+		<server.admin.port>10271</server.admin.port>
+		<bbc.springboot.version>0.0.2-SNAPSHOT</bbc.springboot.version>
+		<shop-performance.version>0.28.1</shop-performance.version>
+
+		<!-- Analysis Tools for CI -->
+		<build-plugin.jacoco.version>0.8.7</build-plugin.jacoco.version>
+
 		<!-- backend dependencies -->
-		<rest-assured.version>4.5.1</rest-assured.version>
-		<postgresql.version>42.3.5</postgresql.version>
+		<!--		<rest-assured.version>4.3.3</rest-assured.version>-->
+		<rest-assured.version>5.0.1</rest-assured.version>
+		<!--		<postgresql.version>42.2.19</postgresql.version>-->
 		<groovy.version>3.0.10</groovy.version>
+
+
+		<kotlin.logging.version>1.7.8</kotlin.logging.version>
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>eu.comparegroup.backbone</groupId>
+				<artifactId>backbone-core-spring-boot</artifactId>
+				<version>${bbc.springboot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+			<dependency>
+				<groupId>eu.comparegroup.services.web</groupId>
+				<artifactId>brilliant-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
-		<!-- In-Memory database used for local development & testing -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
+<!--			<dependency>-->
+<!--				<groupId>eu.comparegroup.services.web</groupId>-->
+<!--				<artifactId>brilliant-frontend</artifactId>-->
+<!--				<version>${project.version}</version>-->
+<!--			</dependency>-->
 
-		<!-- Switch back from Spring Boot 2.x standard HikariCP to Tomcat JDBC,
-		configured later in Heroku (see https://stackoverflow.com/a/49970142/4964553) -->
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jdbc</artifactId>
-		</dependency>
+			<!--			<dependency>-->
+			<!--				<groupId>eu.comparegroup.services.web</groupId>-->
+			<!--				<artifactId>cg-vitesse</artifactId>-->
+			<!--				<version>${project.version}</version>-->
+			<!--			</dependency>-->
 
-		<!-- PostgreSQL used in Staging and Production environment, e.g. on Heroku -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
+			<!--			<dependency>-->
+			<!--				<groupId>eu.comparegroup.services.web</groupId>-->
+			<!--				<artifactId>cg-frontend</artifactId>-->
+			<!--				<version>${project.version}</version>-->
+			<!--			</dependency>-->
 
-		<!-- Testing -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+			<!--			<dependency>-->
+			<!--				<groupId>eu.comparegroup.services.web</groupId>-->
+			<!--				<artifactId>cg-front</artifactId>-->
+			<!--				<version>${project.version}</version>-->
+			<!--			</dependency>-->
 
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>${rest-assured.version}</version>
-			<scope>test</scope>
-		</dependency>
+			<dependency>
+				<groupId>eu.comparegroup.backend</groupId>
+				<artifactId>domain-model</artifactId>
+				<version>${domain.model.version}</version>
+			</dependency>
 
-		<!-- The fixed groovy version is necessary after upgrade to Rest-Assured 4.3. because of conflicts otherwise
+<!--			<dependency>-->
+<!--				<groupId>eu.comparegroup.sp</groupId>-->
+<!--				<artifactId>shop-performance-core</artifactId>-->
+<!--				<version>${shop-performance.version}</version>-->
+<!--				&lt;!&ndash; Exclude backbone core because is has a DropWizard base that will collide with spring boot &ndash;&gt;-->
+<!--				<exclusions>-->
+<!--					<exclusion>-->
+<!--						<groupId>eu.comparegroup.backbone</groupId>-->
+<!--						<artifactId>backbone-core-domain</artifactId>-->
+<!--					</exclusion>-->
+<!--				</exclusions>-->
+<!--			</dependency>-->
+
+
+			<!--			&lt;!&ndash; PostgreSQL used in Staging and Production environment, e.g. on Heroku &ndash;&gt;-->
+			<!--			<dependency>-->
+			<!--				<groupId>org.postgresql</groupId>-->
+			<!--				<artifactId>postgresql</artifactId>-->
+			<!--				<version>${postgresql.version}</version>-->
+			<!--			</dependency>-->
+
+			<!-- The fixed groovy version is necessary after upgrade to Rest-Assured 4.3. because of conflicts otherwise
  		see https://stackoverflow.com/questions/61020200/getting-java-lang-abstractmethoderror-when-i-test-using-rest-assured -->
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy</artifactId>
-			<version>${groovy.version}</version>
-		</dependency>
+			<!--			<dependency>-->
+			<!--				<groupId>org.codehaus.groovy</groupId>-->
+			<!--				<artifactId>groovy</artifactId>-->
+			<!--				<version>${groovy.version}</version>-->
+			<!--			</dependency>-->
 
-		<!-- Secure backend API -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+			<dependency>
+				<groupId>io.rest-assured</groupId>
+				<artifactId>rest-assured</artifactId>
+				<version>${rest-assured.version}</version>
+				<scope>test</scope>
+			</dependency>
 
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-jersey</artifactId>
+				<version>${spring-boot.version}</version>
+				<exclusions>
+					<!-- Exclude the Tomcat dependency because we are using jersey-->
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
 
-	</dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-boot.version}</version>
+				<exclusions>
+					<!-- Exclude the Tomcat dependency because we are using jersey-->
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-configuration-processor</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.github.microutils</groupId>
+				<artifactId>kotlin-logging</artifactId>
+				<version>${kotlin.logging.version}</version>
+			</dependency>
+
+
+		</dependencies>
+	</dependencyManagement>
+
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${build-plugin.jacoco.version}</version>
+				<executions>
+					<!-- Prepares the property pointing to the JaCoCo
+                    runtime agent which is passed as VM argument when Maven the Surefire plugin
+                    is executed. -->
+					<execution>
+						<id>pre-unit-test</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- Ensures that the code coverage report for
+                    unit tests is created after unit tests have been run. -->
+					<execution>
+						<id>post-unit-test</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

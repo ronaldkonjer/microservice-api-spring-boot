@@ -35,7 +35,7 @@ Now we deploy the frontend separately from the backend - which also has some imp
 
 #### Combine CORS & Spring Security
 
-Therefore we can remove the [SpaRedirectFilterConfiguration.java](https://github.com/jonashackt/spring-boot-vuejs/blob/master/backend/src/main/java/de/jonashackt/springbootvuejs/configuration/SpaRedirectFilterConfiguration.java) and need to add a `org.springframework.web.bind.annotation.CrossOrigin` Annotation with `@CrossOrigin` to our [BackendController.java](src/main/java/de/jonashackt/springbootvuejs/controller/BackendController.java):
+Therefore we can remove the [SpaRedirectFilterConfiguration.java](https://github.com/jonashackt/spring-boot-vuejs/blob/master/backend/src/main/java/de/jonashackt/springbootvuejs/configuration/SpaRedirectFilterConfiguration.java) and need to add a `org.springframework.web.bind.annotation.CrossOrigin` Annotation with `@CrossOrigin` to our [BackendController.java](brilliant-api-example/src/main/java/de/jonashackt/springbootvuejs/controller/BackendController.java):
 
 ```java
 import org.springframework.stereotype.Controller;
@@ -54,7 +54,7 @@ https://stackoverflow.com/a/37610988/4964553 states:
 
 > To make it work, you need to explicitly enable CORS support at Spring Security level as following, otherwise CORS enabled requests may be blocked by Spring Security before reaching Spring MVC.
 
-So we need to mind the Spring Security integration! Using the `@CrossOrigin` annotation, we can simply add `and().cors()` to our [WebSecurityConfiguration.java](src/main/java/de/jonashackt/springbootvuejs/configuration/WebSecurityConfiguration.java):
+So we need to mind the Spring Security integration! Using the `@CrossOrigin` annotation, we can simply add `and().cors()` to our [WebSecurityConfiguration.java](brilliant-api-example/src/main/java/de/jonashackt/springbootvuejs/configuration/WebSecurityConfiguration.java):
 
 ```java
     http

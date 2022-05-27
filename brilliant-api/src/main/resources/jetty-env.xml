@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure id="WebAppContext" class="org.eclipse.jetty.webapp.WebAppContext">
+	<Call class="java.lang.System" name="setProperties">
+		<Arg>
+			<New class="java.util.Properties">
+				<Call name="putAll">
+					<Arg>
+						<Call class="java.lang.System" name="getProperties"/>
+					</Arg>
+				</Call>
+			</New>
+		</Arg>
+	</Call>
+</Configure>
