@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>eu.comparegroup.services.web</groupId>
-		<artifactId>cg-spring-boot-vuejs</artifactId>
+		<artifactId>brilliant-api-spring-boot</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
@@ -112,15 +112,9 @@
 		</dependency>
 
 		<!-- kotlin end  -->
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>eu.comparegroup.sp</groupId>
-			<artifactId>shop-performance-core</artifactId>
 		</dependency>
 
 		<dependency>

@@ -44,11 +44,8 @@
 		<build-plugin.jacoco.version>0.8.7</build-plugin.jacoco.version>
 
 		<!-- backend dependencies -->
-		<!--		<rest-assured.version>4.3.3</rest-assured.version>-->
 		<rest-assured.version>5.0.1</rest-assured.version>
-		<!--		<postgresql.version>42.2.19</postgresql.version>-->
 		<groovy.version>3.0.10</groovy.version>
-
 
 		<kotlin.logging.version>1.7.8</kotlin.logging.version>
 	</properties>
@@ -69,64 +66,12 @@
 				<version>${project.version}</version>
 			</dependency>
 
-<!--			<dependency>-->
-<!--				<groupId>eu.comparegroup.services.web</groupId>-->
-<!--				<artifactId>brilliant-frontend</artifactId>-->
-<!--				<version>${project.version}</version>-->
-<!--			</dependency>-->
-
-			<!--			<dependency>-->
-			<!--				<groupId>eu.comparegroup.services.web</groupId>-->
-			<!--				<artifactId>cg-vitesse</artifactId>-->
-			<!--				<version>${project.version}</version>-->
-			<!--			</dependency>-->
-
-			<!--			<dependency>-->
-			<!--				<groupId>eu.comparegroup.services.web</groupId>-->
-			<!--				<artifactId>cg-frontend</artifactId>-->
-			<!--				<version>${project.version}</version>-->
-			<!--			</dependency>-->
-
-			<!--			<dependency>-->
-			<!--				<groupId>eu.comparegroup.services.web</groupId>-->
-			<!--				<artifactId>cg-front</artifactId>-->
-			<!--				<version>${project.version}</version>-->
-			<!--			</dependency>-->
-
 			<dependency>
 				<groupId>eu.comparegroup.backend</groupId>
 				<artifactId>domain-model</artifactId>
 				<version>${domain.model.version}</version>
 			</dependency>
 
-<!--			<dependency>-->
-<!--				<groupId>eu.comparegroup.sp</groupId>-->
-<!--				<artifactId>shop-performance-core</artifactId>-->
-<!--				<version>${shop-performance.version}</version>-->
-<!--				&lt;!&ndash; Exclude backbone core because is has a DropWizard base that will collide with spring boot &ndash;&gt;-->
-<!--				<exclusions>-->
-<!--					<exclusion>-->
-<!--						<groupId>eu.comparegroup.backbone</groupId>-->
-<!--						<artifactId>backbone-core-domain</artifactId>-->
-<!--					</exclusion>-->
-<!--				</exclusions>-->
-<!--			</dependency>-->
-
-
-			<!--			&lt;!&ndash; PostgreSQL used in Staging and Production environment, e.g. on Heroku &ndash;&gt;-->
-			<!--			<dependency>-->
-			<!--				<groupId>org.postgresql</groupId>-->
-			<!--				<artifactId>postgresql</artifactId>-->
-			<!--				<version>${postgresql.version}</version>-->
-			<!--			</dependency>-->
-
-			<!-- The fixed groovy version is necessary after upgrade to Rest-Assured 4.3. because of conflicts otherwise
- 		see https://stackoverflow.com/questions/61020200/getting-java-lang-abstractmethoderror-when-i-test-using-rest-assured -->
-			<!--			<dependency>-->
-			<!--				<groupId>org.codehaus.groovy</groupId>-->
-			<!--				<artifactId>groovy</artifactId>-->
-			<!--				<version>${groovy.version}</version>-->
-			<!--			</dependency>-->
 
 			<dependency>
 				<groupId>io.rest-assured</groupId>
@@ -172,8 +117,6 @@
 				<artifactId>kotlin-logging</artifactId>
 				<version>${kotlin.logging.version}</version>
 			</dependency>
-
-
 		</dependencies>
 	</dependencyManagement>
 
